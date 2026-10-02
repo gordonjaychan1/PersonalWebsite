@@ -133,7 +133,7 @@ main > section.block:first-child { border-top: 0; padding-top: clamp(40px, 7vw, 
 }
 
 /* ---------- web work ---------- */
-.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 28px; align-items: start; }
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 56px; align-items: start; }
 @media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
 .project { display: grid; gap: 14px; }
 .browser {
@@ -144,7 +144,7 @@ main > section.block:first-child { border-top: 0; padding-top: clamp(40px, 7vw, 
 .dots { display: flex; gap: 5px; flex: none; }
 .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
 .url {
-  flex: 1; min-width: 0; font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+  flex: 1; min-width: 0; font-family: var(--mono); font-size: 0.8125rem; color: var(--ink);
   background: var(--bg); border-radius: 5px; padding: 3px 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .shot { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--bg); }
@@ -212,6 +212,12 @@ a.browser:hover { transform: translateY(-3px); }
 .p-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .p-meta h3 { font-size: var(--step-2); font-weight: 600; }
 .p-meta .label { white-space: nowrap; }
+.site-link {
+  font-family: var(--mono); font-size: 0.875rem; font-weight: 500; color: var(--ink);
+  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+.site-link:hover { text-decoration-thickness: 2.5px; }
 .project p { color: var(--muted); max-width: 52ch; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tags span { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; background: var(--rind-soft); color: var(--rind); }
@@ -277,7 +283,9 @@ a.browser:hover { transform: translateY(-3px); }
 /* ---------- tutoring ---------- */
 .tutor { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: start; }
 @media (max-width: 860px) { .tutor { grid-template-columns: 1fr; } }
-.subjects { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.subjects { display: grid; gap: 0; }
+.subjects-head { font-size: var(--step-1); font-weight: 600; margin-bottom: 10px; }
+.subjects-head + .subject { border-top: 1px solid var(--line); }
 .subject { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
 .subject strong { font-family: var(--display); font-size: var(--step-1); font-weight: 600; }
 .subject span { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); text-align: right; }
@@ -370,6 +378,9 @@ a.browser:hover { transform: translateY(-3px); }
   display: block; width: 100%; max-width: 22rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 60%;
   border-radius: 14px; border: 1.5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink);
 }
+.photo.fit { max-width: none; aspect-ratio: auto; }
+.photo-pair.music { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.794fr); align-items: start; }
+@media (max-width: 760px) { .photo-pair.music { grid-template-columns: 1fr; } .photo-pair.music .photo-fig:first-child .photo { max-width: 20rem; } }
 .photo.wide { max-width: none; aspect-ratio: 3 / 2; object-position: 50% 50%; }
 .photo-pair { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 24px; }
 @media (max-width: 760px) { .photo-pair { grid-template-columns: 1fr; gap: 20px; } }
@@ -427,7 +438,7 @@ a.browser:hover { transform: translateY(-3px); }
 @media (max-width: 860px) { .site-foot .contact { grid-template-columns: 1fr; align-items: start; } }
 .foot-bar { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
 .foot-bar { align-items: center; }
-.foot-bar .foot-left { display: flex; gap: 6px 16px; flex-wrap: wrap; }
+.foot-right { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 .ig { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; color: var(--ink); transition: background .15s; }
 .ig:hover { background: color-mix(in srgb, var(--ink) 12%, transparent); }
 .ig svg { width: 22px; height: 22px; }

@@ -1,3 +1,9 @@
+// Show clean addresses: /about instead of /about.html, / instead of /index.html
+if (/\.html$/.test(location.pathname)) {
+  const clean = location.pathname.replace(/index\.html$/, "").replace(/\.html$/, "");
+  history.replaceState(null, "", clean + location.search + location.hash);
+}
+
 document.getElementById("copy").addEventListener("click", async (e) => {
   const btn = e.currentTarget;
   const text = document.getElementById("email").textContent.trim();
