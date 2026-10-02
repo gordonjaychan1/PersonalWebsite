@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+  // Old links from before the repo rename (/PersonalWebsite/...) go to the same page at the root
+  if (/^\/PersonalWebsite(\/|$)/i.test(location.pathname)) {
+    var p = location.pathname.replace(/^\/PersonalWebsite/i, "").replace(/\.html$/, "").replace(/\/index$/, "/") || "/";
+    location.replace(p + location.search + location.hash);
+  }
+</script>
 <base href="/">
 <meta charset="utf-8">
 <meta name="theme-color" content="#5E5A6E">
