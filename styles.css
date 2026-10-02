@@ -84,13 +84,31 @@ p { margin: 0; }
 .hero { padding-block: clamp(48px, 9vw, 96px) 40px; }
 .hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.02em; max-width: 15ch; }
 .hero h1 em { font-style: normal; background: var(--ink); color: var(--bg); padding: 0 .15em; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hero { position: relative; }
+.nudge {
+  position: absolute; top: 6px; right: 36px; display: flex; align-items: flex-end; gap: 2px;
+  color: var(--ink); pointer-events: none; animation: nudge 2.4s ease-in-out infinite;
+}
+.nudge span { font-family: "Caveat", "Bradley Hand", "Comic Sans MS", cursive; font-size: 1.5rem; line-height: 1; transform: rotate(-4deg); margin-bottom: 4px; white-space: nowrap; }
+@keyframes nudge { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(3px, -4px); } }
+@media (prefers-reduced-motion: reduce) { .nudge { animation: none; } }
+@media (max-width: 760px) { .hero { padding-top: 84px; } .nudge { right: 12px; } }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: 48px; align-items: center; }
 .portrait {
   width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%;
   border-radius: 14px; border: 1.5px solid var(--ink); box-shadow: 10px 10px 0 var(--ink);
 }
 @media (max-width: 760px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero { position: relative; }
+.nudge {
+  position: absolute; top: 6px; right: 36px; display: flex; align-items: flex-end; gap: 2px;
+  color: var(--ink); pointer-events: none; animation: nudge 2.4s ease-in-out infinite;
+}
+.nudge span { font-family: "Caveat", "Bradley Hand", "Comic Sans MS", cursive; font-size: 1.5rem; line-height: 1; transform: rotate(-4deg); margin-bottom: 4px; white-space: nowrap; }
+@keyframes nudge { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(3px, -4px); } }
+@media (prefers-reduced-motion: reduce) { .nudge { animation: none; } }
+@media (max-width: 760px) { .hero { padding-top: 84px; } .nudge { right: 12px; } }
+.hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .portrait { max-width: 18rem; }
 }
 .hero .lede { margin-top: 20px; font-size: var(--step-1); color: var(--muted); max-width: 46ch; }
@@ -298,6 +316,7 @@ a.browser:hover { transform: translateY(-3px); }
 .contact-text { display: grid; gap: 8px; max-width: 40rem; }
 .site-foot .email { font-size: 1rem; padding: 9px 14px; }
 .site-foot .contact h2 { font-size: var(--step-2); }
+.site-foot .contact h2 small { display: block; margin-top: 4px; font-size: 0.6em; font-weight: 600; color: var(--muted); letter-spacing: 0; }
 .site-foot .contact p:not(.label) { font-size: 0.9375rem; }
 @media (max-width: 860px) { .site-foot .contact { grid-template-columns: 1fr; align-items: start; } }
 .foot-bar { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
