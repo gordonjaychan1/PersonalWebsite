@@ -94,6 +94,15 @@ p { margin: 0; }
 .hero { padding-block: clamp(48px, 9vw, 96px) 40px; }
 .hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.02em; max-width: 15ch; }
 .hero h1 em { font-style: normal; background: var(--ink); color: var(--bg); padding: 0 .15em; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); gap: 48px; align-items: center; }
+.portrait {
+  width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%;
+  border-radius: 14px; border: 1.5px solid var(--ink); box-shadow: 10px 10px 0 var(--ink);
+}
+@media (max-width: 760px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .portrait { max-width: 18rem; }
+}
 .hero .lede { margin-top: 20px; font-size: var(--step-1); color: var(--muted); max-width: 46ch; }
 
 .hats { margin-top: 44px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -228,21 +237,23 @@ a.browser:hover { transform: translateY(-3px); }
 .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn.primary:hover { background: color-mix(in srgb, var(--ink) 82%, var(--bg)); border-color: transparent; }
 
-.sheet { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.sheet { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 @media (max-width: 860px) { .sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .frame {
   position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 8px; overflow: hidden;
   background: var(--ink); display: flex; flex-direction: column; justify-content: flex-end; padding: 12px;
-  color: var(--bg); text-decoration: none;
+  color: var(--lav); text-decoration: none;
 }
-.frame::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--bg) 7%, transparent) 14px 15px); }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; transition: transform .3s; }
+.frame:hover img { transform: scale(1.04); }
+.frame::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(to top, rgb(20 18 28 / .75), transparent 50%); }
 .frame:hover { outline: 2px solid var(--ink); outline-offset: 3px; }
-.frame > * { position: relative; z-index: 1; }
+.frame > :not(img) { position: relative; z-index: 1; }
 .frame strong { font-family: var(--display); font-size: var(--step-1); font-weight: 600; line-height: 1.15; }
 .frame small { font-family: var(--mono); font-size: 0.6875rem; opacity: .85; letter-spacing: .03em; }
 .frame .fmt {
   position: absolute; top: 10px; left: 10px; z-index: 1; font-family: var(--mono); font-size: 0.6875rem;
-  border: 1px solid color-mix(in srgb, var(--bg) 50%, transparent); padding: 2px 7px; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--lav) 60%, transparent); padding: 2px 7px; border-radius: 999px;
 }
 
 /* ---------- contact / footer ---------- */
@@ -283,9 +294,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 
 <main id="top">
   <div class="wrap hero">
-    <p class="label">Websites · Tutoring · @gourdtravels</p>
-    <h1 style="margin-top:14px">Hi, I'm Gordon. I build websites, teach, and <em>travel</em>.</h1>
-    <p class="lede">I help small businesses get online with sites that are fast and easy to update. I also tutor students one-on-one, and I post where I've been as @gourdtravels.</p>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="label">Websites · Tutoring · @gourdtravels</p>
+        <h1 style="margin-top:14px">Hi, I'm Gordon. I build websites, teach, and <em>travel</em>.</h1>
+        <p class="lede">I help small businesses get online with sites that are fast and easy to update. I also tutor students one-on-one, and I post where I've been as @gourdtravels.</p>
+      </div>
+      <img class="portrait" src="images/gordon.jpg" alt="Gordon sitting outdoors among trees, wearing glasses and a green sweater" width="935" height="1372">
+    </div>
 
     <div class="hats">
       <a class="hat" href="#web">
@@ -396,14 +412,13 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <p class="label">Tutoring</p>
         <h2>One-on-one tutoring that meets students where they are</h2>
         <p>Patient, structured sessions built around what the student is actually stuck on, not a script.</p>
-        <p class="draft-note">Confirm session format and length.</p>
       </div>
 
       <div class="tutor">
         <div class="subjects">
           <div class="subject"><strong>Math</strong><span>Everything through Pre-calculus</span></div>
-          <div class="subject"><strong>Biology</strong><span>Science</span></div>
-          <div class="subject"><strong>Chemistry</strong><span>Science</span></div>
+          <div class="subject"><strong>Science</strong><span>Biology · Chemistry</span></div>
+          <div class="subject"><strong>Test prep</strong><span>SAT · ACT</span></div>
         </div>
 
         <div class="lesson">
@@ -415,7 +430,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
             <li><div><b>Progress check-ins</b><p>Quick notes to parents or the student on what's improving and what's next.</p></div></li>
           </ol>
           <div class="facts">
-            <div><span class="label">Format</span><strong>Online or in person</strong></div>
+            <div><span class="label">Format</span><strong>Online, or in person in the SF Bay Area</strong></div>
             <div><span class="label">Session</span><strong>60 min</strong></div>
             <div><span class="label">Rate</span><strong>$55 / hour</strong></div>
           </div>
@@ -433,7 +448,6 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <p class="label">Travel</p>
           <h2 class="handle">@gourdtravels</h2>
           <p>Food, neighborhoods, and the small stuff that makes a place worth the flight. Come along.</p>
-          <p class="draft-note">Swap these tiles for your own photos and trips.</p>
         </div>
         <div class="socials">
           <a class="btn primary" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">Follow on Instagram</a>
@@ -441,17 +455,29 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       </div>
 
       <div class="sheet">
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
-          <span class="fmt">Reel</span><small>35.01°N 135.77°E</small><strong>Kyoto</strong>
+        <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcXyz-AtbQ_/" target="_blank" rel="noopener">
+          <img src="images/ig/DcXyz-AtbQ_.jpg" alt="" loading="lazy">
+          <span class="fmt">Reel</span><small>Aug 22, 2026</small><strong>Crazy photo setting</strong>
         </a>
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
-          <span class="fmt">Post</span><small>38.72°N 9.14°W</small><strong>Lisbon</strong>
+        <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcVNxxnh6YN/" target="_blank" rel="noopener">
+          <img src="images/ig/DcVNxxnh6YN.jpg" alt="" loading="lazy">
+          <span class="fmt">Reel</span><small>Aug 21, 2026</small><strong>My name is Gordon</strong>
         </a>
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
-          <span class="fmt">Reel</span><small>21.03°N 105.85°E</small><strong>Hanoi</strong>
+        <a class="frame" href="https://www.instagram.com/gourdtravels/p/DcSRZ9_lEbv/" target="_blank" rel="noopener">
+          <img src="images/ig/DcSRZ9_lEbv.jpg" alt="" loading="lazy">
+          <span class="fmt">Photos</span><small>Aug 20, 2026</small><strong>Banff</strong>
         </a>
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
-          <span class="fmt">Guide</span><small>19.43°N 99.13°W</small><strong>Mexico City</strong>
+        <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcPbe30h1gh/" target="_blank" rel="noopener">
+          <img src="images/ig/DcPbe30h1gh.jpg" alt="" loading="lazy">
+          <span class="fmt">Reel</span><small>Aug 19, 2026</small><strong>Tottori Sand Dunes</strong>
+        </a>
+        <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcMgHOFyWdk/" target="_blank" rel="noopener">
+          <img src="images/ig/DcMgHOFyWdk.jpg" alt="" loading="lazy">
+          <span class="fmt">Reel</span><small>Aug 18, 2026</small><strong>Training karate with a world champion</strong>
+        </a>
+        <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcKoRzOxI03/" target="_blank" rel="noopener">
+          <img src="images/ig/DcKoRzOxI03.jpg" alt="" loading="lazy">
+          <span class="fmt">Reel</span><small>Aug 17, 2026</small><strong>Sunset above the clouds on Mt. Fuji</strong>
         </a>
       </div>
     </div>
