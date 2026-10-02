@@ -202,7 +202,7 @@ a.browser:hover { transform: translateY(-3px); }
 .tags span { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; background: var(--rind-soft); color: var(--rind); }
 
 .price {
-  margin-top: 48px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px 40px; align-items: center;
+  margin-top: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px 40px; align-items: center;
   padding: 28px; border: 1.5px solid var(--ink); border-radius: var(--radius);
 }
 @media (max-width: 760px) { .price { grid-template-columns: 1fr; } }
@@ -219,9 +219,22 @@ a.browser:hover { transform: translateY(-3px); }
 .services p { color: var(--muted); font-size: 0.9375rem; }
 
 /* ---------- testimonials ---------- */
-.kind-words { margin-top: 56px; display: grid; gap: 18px; }
-.kind-words-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.kind-words-head h2 { font-size: var(--step-2); font-weight: 600; }
+/* testimonials sit in an inverted band so the switch from my words to theirs is obvious */
+.band {
+  --bg: var(--gry); --ink: var(--lav);
+  --muted: color-mix(in srgb, var(--ink) 88%, var(--bg));
+  --line: color-mix(in srgb, var(--ink) 35%, var(--bg));
+  --rind-soft: color-mix(in srgb, var(--ink) 12%, var(--bg));
+  --surface: var(--bg);
+  background: var(--bg); color: var(--ink); border-top: 0;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .band { --bg: var(--lav); --ink: var(--gry); } }
+:root[data-theme="dark"] .band { --bg: var(--lav); --ink: var(--gry); }
+.band + section.block { border-top: 0; }
+.kind-words, .faq { display: grid; gap: 24px; }
+.kind-words-head { display: flex; align-items: end; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.kind-words-head > div { display: grid; gap: 10px; }
+.kind-words-head h2 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.015em; }
 .chip { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; border: 1px dashed var(--ink); color: var(--ink); }
 .quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 760px) { .quotes { grid-template-columns: 1fr; } }
@@ -234,7 +247,6 @@ a.browser:hover { transform: translateY(-3px); }
 .quote figcaption span { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); letter-spacing: .03em; }
 
 /* ---------- faq ---------- */
-.faq { margin-top: 56px; display: grid; gap: 18px; }
 .faq-list { border-top: 1px solid var(--line); }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq summary {
@@ -246,7 +258,6 @@ a.browser:hover { transform: translateY(-3px); }
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .faq details p { padding-bottom: 18px; color: var(--muted); max-width: 60ch; }
-.answer-todo { font-style: italic; }
 
 /* ---------- tutoring ---------- */
 .tutor { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: start; }
@@ -263,7 +274,7 @@ a.browser:hover { transform: translateY(-3px); }
 .cred span { color: var(--muted); font-size: 0.9375rem; }
 @media (max-width: 480px) { .cred { grid-template-columns: 1fr; gap: 2px; } }
 
-.book { margin-top: 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px; align-items: start; padding: 28px; border: 1.5px solid var(--ink); border-radius: var(--radius); }
+.book { margin-top: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px; align-items: start; padding: 28px; border: 1.5px solid var(--ink); border-radius: var(--radius); }
 @media (max-width: 860px) { .book { grid-template-columns: 1fr; gap: 24px; padding: 20px; } }
 .book-text { display: grid; gap: 12px; }
 .book-text h2 { font-size: var(--step-2); font-weight: 800; }
