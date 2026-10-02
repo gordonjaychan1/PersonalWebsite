@@ -47,6 +47,13 @@
           <div class="subject"><strong>Math</strong><span>Everything through Pre-calculus</span></div>
           <div class="subject"><strong>Science</strong><span>Biology · Chemistry</span></div>
           <div class="subject"><strong>Test prep</strong><span>SAT · ACT</span></div>
+          <div class="creds">
+            <h3>Why work with me</h3>
+            <div class="cred"><strong>36</strong><span>Perfect ACT score, on my first try</span></div>
+            <div class="cred"><strong>Summa cum laude</strong><span>Santa Clara University, 2024</span></div>
+            <div class="cred"><strong>2 years</strong><span>Tutoring elementary and middle school students while I was in high school</span></div>
+            <div class="cred"><strong>2 years</strong><span>Coaching karate, now with the SCU Shotokan Karate team</span></div>
+          </div>
         </div>
 
         <div class="lesson">
@@ -57,11 +64,12 @@
             <li><div><b>Progress check-ins</b><p>Quick notes to parents or the student on what's improving and what's next.</p></div></li>
           </ol>
           <div class="facts">
+            <div><span class="label">Students</span><strong>Elementary, middle &amp; high school</strong></div>
             <div><span class="label">Format</span><strong>Online, or in person in the SF Bay Area</strong></div>
             <div><span class="label">Session</span><strong>60 min</strong></div>
             <div><span class="label">Rate</span><strong>$55 / hour</strong></div>
           </div>
-          <div><a class="btn primary" href="#contact">Book a trial session</a></div>
+          <div><a class="btn primary" href="#book">Book a trial session</a></div>
         </div>
       </div>
 
@@ -77,6 +85,35 @@
             <figcaption><b>Sample student</b><span>SAT prep</span></figcaption>
           </figure>
         </div>
+      </div>
+
+      <div class="book" id="book">
+        <div class="book-text">
+          <h2>Book a trial session</h2>
+          <p>Fill this out and press the button. Your email app opens with a request to me already written, and you just hit send. I'll reply within a day or two to set a time.</p>
+          <p>Prefer to write it yourself? Email <a href="mailto:gordonjaychan1@gmail.com">gordonjaychan1@gmail.com</a>.</p>
+        </div>
+        <form class="book-form" id="book-form">
+          <label>Student's name<input id="bk-name" name="name" required autocomplete="off"></label>
+          <label>Grade<select id="bk-grade" name="grade" required>
+            <option value="">Choose…</option>
+            <option>Elementary school</option><option>Middle school</option><option>High school</option>
+          </select></label>
+          <label>Subject<select id="bk-subject" name="subject" required>
+            <option value="">Choose…</option>
+            <option>Math</option><option>Science (Biology / Chemistry)</option><option>SAT prep</option><option>ACT prep</option>
+          </select></label>
+          <label>Format<select id="bk-format" name="format" required>
+            <option value="">Choose…</option>
+            <option>Online</option><option>In person (SF Bay Area)</option>
+          </select></label>
+          <label class="wide">Days and times that work<input id="bk-times" name="times" placeholder="e.g. Tue or Thu after 4pm"></label>
+          <label class="wide">Anything I should know?<textarea id="bk-notes" name="notes" rows="3" placeholder="Upcoming test, topics that feel hard, goals"></textarea></label>
+          <div class="wide book-actions">
+            <button class="btn primary" type="submit">Write the email</button>
+            <p class="book-status" id="bk-status" role="status"></p>
+          </div>
+        </form>
       </div>
     </div>
   </section>
