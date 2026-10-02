@@ -83,7 +83,7 @@ p { margin: 0; }
 /* ---------- hero ---------- */
 .hero { padding-block: clamp(48px, 9vw, 96px) 40px; }
 .hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.02em; max-width: 15ch; }
-.hero h1 em { font-style: normal; background: var(--ink); color: var(--bg); padding: 0 .15em; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hero h1 em { font-style: normal; }
 .hero { position: relative; }
 .nudge {
   position: absolute; top: 6px; right: 172px; display: flex; align-items: flex-end; gap: 2px;
@@ -153,6 +153,21 @@ a.browser:hover { transform: translateY(-3px); }
 .p-meta h3 a { text-decoration: none; }
 .p-meta h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .status { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; background: var(--ink); color: var(--bg); }
+/* before/after slider: the "before" image sits on top, clipped to the handle position */
+.ba { position: relative; --pos: 50%; touch-action: pan-y; }
+.ba-before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--lav); box-shadow: 0 0 0 1px rgb(20 18 28 / .35); pointer-events: none; }
+.ba-handle::after {
+  content: "\2194"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--lav); color: var(--gry); font-size: 18px; font-weight: 600; box-shadow: 0 2px 10px rgb(20 18 28 / .35);
+}
+.ba-tag { position: absolute; top: 10px; font-family: var(--mono); font-size: 0.6875rem; padding: 3px 8px; border-radius: 999px; background: var(--gry); color: var(--lav); pointer-events: none; }
+.ba-tag.before { left: 10px; }
+.ba-tag.after { right: 10px; }
+.ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
+.ba:focus-within .ba-handle::after { outline: 2px solid var(--gry); outline-offset: 2px; }
+.ba-hint { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
 /* mini page mockups: each project gets its own client palette */
 .mock { aspect-ratio: 16 / 10; max-width: 100%; background: var(--c-bg); padding: 6% 7%; display: grid; grid-template-rows: auto 1fr; gap: 8%; }
 .mock .m-nav { display: flex; justify-content: space-between; align-items: center; }
@@ -377,6 +392,15 @@ a.browser:hover { transform: translateY(-3px); }
 .facts-list dt { font-family: var(--mono); font-size: var(--step--1); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
 .facts-list dd { margin: 0; font-family: var(--display); font-size: var(--step-1); font-weight: 600; line-height: 1.3; }
 .facts-list small { display: block; font-family: var(--body); font-size: 0.875rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+
+/* ---------- 404 ---------- */
+.lost-wrap { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 40px; align-items: center; }
+@media (max-width: 620px) { .lost-wrap { grid-template-columns: 1fr; gap: 24px; } }
+.lost-gourd { width: 120px; height: auto; transform: rotate(-14deg); }
+.lost-text { display: grid; gap: 14px; max-width: 36rem; }
+.lost-text h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.015em; }
+.lost-text p:not(.label) { color: var(--muted); font-size: 1.0625rem; }
+.lost-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 
 /* ---------- contact / footer ---------- */
 .contact { display: grid; gap: 20px; }

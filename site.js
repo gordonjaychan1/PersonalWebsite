@@ -40,3 +40,10 @@ if (bookForm) {
       "Your email app should open with the request filled in. Press send there. If nothing opened, email gordonjaychan1@gmail.com.";
   });
 }
+
+document.querySelectorAll(".ba").forEach((ba) => {
+  const range = ba.querySelector(".ba-range");
+  const set = () => ba.style.setProperty("--pos", range.value + "%");
+  range.addEventListener("input", set);
+  set();
+});
