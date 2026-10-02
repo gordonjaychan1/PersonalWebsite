@@ -155,6 +155,7 @@ a.browser:hover { transform: translateY(-3px); }
 .status { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; background: var(--ink); color: var(--bg); }
 /* before/after slider: the "before" image sits on top, clipped to the handle position */
 .ba { position: relative; --pos: 50%; touch-action: pan-y; }
+.shot.natural { aspect-ratio: auto; }
 .ba-before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 .ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--lav); box-shadow: 0 0 0 1px rgb(20 18 28 / .35); pointer-events: none; }
 .ba-handle::after {
