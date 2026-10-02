@@ -8,7 +8,7 @@
 <meta property="og:title" content="Gordon Chan">
 <meta property="og:description" content="Websites, tutoring, and @gourdtravels.">
 <meta property="og:image" content="images/camarilloroofingsolution.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 30'%3E%3Ccircle cx='13' cy='8.5' r='5' fill='%23141414'/%3E%3Ccircle cx='13' cy='20' r='8.5' fill='%23141414'/%3E%3Crect x='10' y='10' width='6' height='5' fill='%23141414'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 30'%3E%3Ccircle cx='13' cy='8.5' r='5' fill='%235E5A6E'/%3E%3Ccircle cx='13' cy='20' r='8.5' fill='%235E5A6E'/%3E%3Crect x='10' y='10' width='6' height='5' fill='%235E5A6E'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
@@ -17,12 +17,12 @@
    browser frames for client sites, a lesson card for tutoring, a contact-sheet grid for travel. */
 :root {
   --lav: #E7DDFF;
-  --blk: #141414;
+  --gry: #5E5A6E;    /* soft purple-gray */
   --bg: var(--lav);
-  --ink: var(--blk);
+  --ink: var(--gry);
   --surface: var(--bg);
-  --muted: color-mix(in srgb, var(--ink) 72%, var(--bg));
-  --line: color-mix(in srgb, var(--ink) 22%, var(--bg));
+  --muted: color-mix(in srgb, var(--ink) 92%, var(--bg));
+  --line: color-mix(in srgb, var(--ink) 32%, var(--bg));
   --rind: var(--ink);
   --flesh: var(--ink);
   --flesh-soft: color-mix(in srgb, var(--ink) 10%, var(--bg));
@@ -44,12 +44,12 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: var(--blk); --ink: var(--lav);
+    --bg: var(--gry); --ink: var(--lav);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: var(--blk); --ink: var(--lav);
+  --bg: var(--gry); --ink: var(--lav);
   color-scheme: dark;
 }
 
@@ -226,7 +226,7 @@ a.browser:hover { transform: translateY(-3px); }
 }
 .btn:hover { border-color: var(--ink); }
 .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.btn.primary:hover { background: var(--muted); border-color: var(--muted); }
+.btn.primary:hover { background: color-mix(in srgb, var(--ink) 82%, var(--bg)); border-color: transparent; }
 
 .sheet { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 860px) { .sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -396,15 +396,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <p class="label">Tutoring</p>
         <h2>One-on-one tutoring that meets students where they are</h2>
         <p>Patient, structured sessions built around what the student is actually stuck on, not a script.</p>
-        <p class="draft-note">Fill in your real subjects, levels, and format.</p>
+        <p class="draft-note">Confirm session format and length.</p>
       </div>
 
       <div class="tutor">
         <div class="subjects">
-          <div class="subject"><strong>Math</strong><span>Algebra → Calculus</span></div>
-          <div class="subject"><strong>Test prep</strong><span>SAT · ACT</span></div>
-          <div class="subject"><strong>Coding</strong><span>HTML · CSS · JavaScript</span></div>
-          <div class="subject"><strong>Writing</strong><span>Essays · College apps</span></div>
+          <div class="subject"><strong>Math</strong><span>Everything through Pre-calculus</span></div>
+          <div class="subject"><strong>Biology</strong><span>Science</span></div>
+          <div class="subject"><strong>Chemistry</strong><span>Science</span></div>
         </div>
 
         <div class="lesson">
@@ -465,7 +464,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <h2>Need a website, a tutor, or a travel tip?</h2>
       <p>Send me a note with a little about what you're looking for. I usually reply within a day or two.</p>
       <div class="email-row">
-        <span class="email" id="email">hello@yourdomain.com</span>
+        <span class="email" id="email">gordonjaychan1@gmail.com</span>
+        <a class="btn primary" href="mailto:gordonjaychan1@gmail.com">Email me</a>
         <button class="btn" id="copy" type="button">Copy email</button>
       </div>
     </div>
@@ -475,7 +475,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 <footer>
   <div class="wrap">
     <span>© 2026 Gordon Chan</span>
-    <span>Websites · Tutoring · @gourdtravels</span>
+    <a href="mailto:gordonjaychan1@gmail.com">gordonjaychan1@gmail.com</a>
   </div>
 </footer>
 
