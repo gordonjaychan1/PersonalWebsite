@@ -133,7 +133,7 @@ section.block { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var
 }
 
 /* ---------- web work ---------- */
-.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 28px; align-items: start; }
 @media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
 .project { display: grid; gap: 14px; }
 .browser {
@@ -173,7 +173,28 @@ a.browser:hover { transform: translateY(-3px); }
 .project.wide { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
 .project.wide .info { display: grid; gap: 14px; min-width: 0; }
 @media (max-width: 760px) { .project.wide { grid-template-columns: 1fr; gap: 14px; } }
-.p-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.story {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: center;
+  padding: 10px 14px 10px 10px; border: 1.5px dashed var(--ink); border-radius: var(--radius);
+  text-decoration: none; font-size: 0.9375rem; line-height: 1.45; color: var(--muted);
+  transition: background .15s;
+}
+.story:hover { background: var(--rind-soft); }
+.story img { width: 44px; height: 78px; object-fit: cover; border-radius: 6px; }
+.story b { display: block; color: var(--ink); font-weight: 600; }
+.story u { color: var(--ink); text-underline-offset: 3px; white-space: nowrap; }
+.frame-wrap { position: relative; }
+.crosslink {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  font-family: var(--mono); font-size: 0.6875rem; text-decoration: none;
+  background: var(--lav); color: var(--gry); padding: 4px 9px; border-radius: 999px;
+  box-shadow: 0 2px 8px rgb(20 18 28 / .3);
+}
+.crosslink:hover { background: var(--gry); color: var(--lav); }
+@keyframes ping { from { outline: 3px solid var(--ink); outline-offset: 2px; } to { outline: 3px solid transparent; outline-offset: 16px; } }
+.project:target, .frame-wrap:target { animation: ping 1.2s ease-out 2; border-radius: var(--radius); }
+@media (prefers-reduced-motion: reduce) { .project:target, .frame-wrap:target { animation: none; outline: 3px solid var(--ink); outline-offset: 6px; } }
+.p-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .p-meta h3 { font-size: var(--step-2); font-weight: 600; }
 .p-meta .label { white-space: nowrap; }
 .project p { color: var(--muted); max-width: 52ch; }
@@ -256,8 +277,19 @@ a.browser:hover { transform: translateY(-3px); }
   border: 1px solid color-mix(in srgb, var(--lav) 60%, transparent); padding: 2px 7px; border-radius: 999px;
 }
 
+/* ---------- about ---------- */
+.about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+@media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 8px; } }
+.about .block-head { margin-bottom: 0; }
+.facts-list { margin: 0; border-top: 1px solid var(--line); }
+.facts-list div { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.facts-list dt { font-family: var(--mono); font-size: var(--step--1); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.facts-list dd { margin: 0; font-family: var(--display); font-size: var(--step-1); font-weight: 600; line-height: 1.3; }
+.facts-list small { display: block; font-family: var(--body); font-size: 0.875rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+
 /* ---------- contact / footer ---------- */
-.contact { display: grid; gap: 20px; max-width: 40rem; }
+.contact { display: grid; gap: 20px; }
+.contact > * { max-width: 40rem; }
 .contact h2 { font-size: var(--step-3); font-weight: 800; }
 .contact p { color: var(--muted); font-size: 1.0625rem; }
 .email-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -287,6 +319,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <a href="#web">Web work</a>
       <a href="#tutoring">Tutoring</a>
       <a href="#travels">Travels</a>
+      <a href="#about" class="hide-sm">About</a>
       <a href="#contact" class="hide-sm">Contact</a>
     </nav>
   </div>
@@ -332,7 +365,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       </div>
 
       <div class="projects">
-        <article class="project">
+        <article class="project" id="usami-dojo">
           <a class="browser" href="https://usamirikadojo.com" target="_blank" rel="noopener" aria-label="Visit Usami Rika Dojo">
             <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">usamirikadojo.com</span></div>
             <img class="shot" src="images/usamirikadojo.jpg" alt="Homepage of Usami Rika Dojo" loading="lazy" width="1200" height="750">
@@ -340,6 +373,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <div class="p-meta"><h3><a href="https://usamirikadojo.com" target="_blank" rel="noopener">Usami Rika Dojo</a></h3><span class="label">Karate · Tottori, Japan</span></div>
           <p>The dojo of 2012 World Kata Champion Rika Usami. A bilingual English and Japanese site covering classes for all ages, her achievements, a blog, and a gallery.</p>
           <div class="tags"><span>English / 日本語</span><span>Blog</span><span>Gallery</span></div>
+          <a class="story" href="#trip-usami">
+            <img src="images/ig/DcMgHOFyWdk.jpg" alt="" width="44" height="78">
+            <span><b>How this project started</b>I trained with Rika Usami in Tottori in June 2026, and that trip led to building her dojo's website. <u>See the reel ↓</u></span>
+          </a>
         </article>
         <article class="project">
           <a class="browser" href="https://aabbakarateacademy.com" target="_blank" rel="noopener" aria-label="Visit All American Black Belt Academy">
@@ -377,8 +414,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
             <img class="shot" src="images/katadataanalysis.jpg" alt="Homepage of 2024–25 WKF Kata Analysis" loading="lazy" width="1200" height="750">
           </a>
           <div class="info">
-            <p class="label">Side project · Data</p>
-            <div class="p-meta"><h3><a href="https://gordonjaychan1.github.io/KataDataAnalysis/" target="_blank" rel="noopener">2024–25 WKF Kata Analysis</a></h3></div>
+            <div class="p-meta"><h3><a href="https://gordonjaychan1.github.io/KataDataAnalysis/" target="_blank" rel="noopener">2024–25 WKF Kata Analysis</a></h3><span class="label">Side project · Data</span></div>
             <p>I compiled men's and women's kata results from the 2024–25 WKF season and built a site to explore them: sortable tables, per-athlete and per-kata breakdowns, medal tallies, and charts.</p>
             <div class="tags"><span>Data analysis</span><span>Charts</span><span>Sortable tables</span></div>
           </div>
@@ -424,8 +460,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <div class="lesson">
           <h3>How it works</h3>
           <ol>
-            <li><div><b>Free intro call</b><p>15 minutes to talk about goals, upcoming tests, and where things feel hard.</p></div></li>
-            <li><div><b>A plan for the first month</b><p>I map out the topics to cover and in what order.</p></div></li>
+            <li><div><b>Trial session</b><p>Your first 60-minute session is a trial. If we decide not to continue, it's only $30.</p></div></li>
             <li><div><b>Weekly sessions</b><p>Work through problems together, with short practice between sessions.</p></div></li>
             <li><div><b>Progress check-ins</b><p>Quick notes to parents or the student on what's improving and what's next.</p></div></li>
           </ol>
@@ -434,7 +469,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
             <div><span class="label">Session</span><strong>60 min</strong></div>
             <div><span class="label">Rate</span><strong>$55 / hour</strong></div>
           </div>
-          <div><a class="btn primary" href="#contact">Book an intro call</a></div>
+          <div><a class="btn primary" href="#contact">Book a trial session</a></div>
         </div>
       </div>
     </div>
@@ -471,15 +506,37 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <img src="images/ig/DcPbe30h1gh.jpg" alt="" loading="lazy">
           <span class="fmt">Reel</span><small>Japan · Jun 2026</small><strong>Tottori Sand Dunes</strong>
         </a>
-        <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcMgHOFyWdk/" target="_blank" rel="noopener">
-          <img src="images/ig/DcMgHOFyWdk.jpg" alt="" loading="lazy">
-          <span class="fmt">Reel</span><small>Tottori, Japan · Jun 2026</small><strong>Training with world champion Rika Usami</strong>
-        </a>
+        <div class="frame-wrap" id="trip-usami">
+          <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcMgHOFyWdk/" target="_blank" rel="noopener">
+            <img src="images/ig/DcMgHOFyWdk.jpg" alt="" loading="lazy">
+            <span class="fmt">Reel</span><small>Tottori, Japan · Jun 2026</small><strong>Training with world champion Rika Usami</strong>
+          </a>
+          <a class="crosslink" href="#usami-dojo">↑ Then I built her website</a>
+        </div>
         <a class="frame" href="https://www.instagram.com/gourdtravels/reel/DcKoRzOxI03/" target="_blank" rel="noopener">
           <img src="images/ig/DcKoRzOxI03.jpg" alt="" loading="lazy">
           <span class="fmt">Reel</span><small>Japan · Jul 2026</small><strong>Mt. Fuji</strong>
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div class="block-head">
+        <p class="label">About me</p>
+        <h2>QA engineer by day, bassist and singer the rest of the time</h2>
+        <p>I'm from the Bay Area and work as a QA engineer at Veeva Systems in Pleasanton, CA. I graduated summa cum laude from Santa Clara University in June 2024 with a degree in Management Information Systems.</p>
+        <p>Outside of work I play upright bass, both classical and jazz, and I sing. I sang with the SCU Chamber Singers, and I've sung the national anthem at SF Giants and Golden State Warriors games.</p>
+      </div>
+      <dl class="facts-list">
+        <div><dt>Work</dt><dd>QA Engineer, Veeva Systems<small>Pleasanton, CA</small></dd></div>
+        <div><dt>School</dt><dd>Santa Clara University<small>Management Information Systems · Summa cum laude · 2024</small></dd></div>
+        <div><dt>Home</dt><dd>SF Bay Area</dd></div>
+        <div><dt>Music</dt><dd>Upright bass &amp; voice<small>Classical and jazz bass · SCU Chamber Singers</small></dd></div>
+        <div><dt>Anthem</dt><dd>SF Giants &amp; Golden State Warriors<small>Sang the national anthem at both</small></dd></div>
+      </dl>
     </div>
   </section>
 
