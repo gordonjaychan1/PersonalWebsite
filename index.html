@@ -8,7 +8,7 @@
 <meta property="og:title" content="Gordon Chan">
 <meta property="og:description" content="Websites, tutoring, and @gourdtravels.">
 <meta property="og:image" content="images/camarilloroofingsolution.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 30'%3E%3Ccircle cx='13' cy='8.5' r='5' fill='%232F5A43'/%3E%3Ccircle cx='13' cy='20' r='8.5' fill='%23D97F2A'/%3E%3Crect x='10' y='10' width='6' height='5' fill='%23D97F2A'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 30'%3E%3Ccircle cx='13' cy='8.5' r='5' fill='%23141414'/%3E%3Ccircle cx='13' cy='20' r='8.5' fill='%23141414'/%3E%3Crect x='10' y='10' width='6' height='5' fill='%23141414'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
@@ -16,15 +16,17 @@
 /* Layout: one long page, three "hats" (web / tutoring / travel), each section with its own working surface:
    browser frames for client sites, a lesson card for tutoring, a contact-sheet grid for travel. */
 :root {
-  --bg: #F2F4EE;
-  --surface: #FFFFFF;
-  --ink: #17241D;
-  --muted: #5A6A60;
-  --line: #D6DDD3;
-  --rind: #2F5A43;      /* gourd-skin green */
-  --flesh: #D97F2A;     /* squash orange, the accent */
-  --flesh-soft: #F6E3CF;
-  --rind-soft: #DCE8DF;
+  --lav: #E7DDFF;
+  --blk: #141414;
+  --bg: var(--lav);
+  --ink: var(--blk);
+  --surface: var(--bg);
+  --muted: color-mix(in srgb, var(--ink) 72%, var(--bg));
+  --line: color-mix(in srgb, var(--ink) 22%, var(--bg));
+  --rind: var(--ink);
+  --flesh: var(--ink);
+  --flesh-soft: color-mix(in srgb, var(--ink) 10%, var(--bg));
+  --rind-soft: color-mix(in srgb, var(--ink) 9%, var(--bg));
 
   --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --body: "Figtree", "Helvetica Neue", Arial, sans-serif;
@@ -42,14 +44,12 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #111814; --surface: #19221D; --ink: #E7EDE6; --muted: #9DAEA3; --line: #2B3830;
-    --rind: #8CC3A1; --flesh: #F09A4A; --flesh-soft: #3A2A1C; --rind-soft: #1F3328;
+    --bg: var(--blk); --ink: var(--lav);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #111814; --surface: #19221D; --ink: #E7EDE6; --muted: #9DAEA3; --line: #2B3830;
-  --rind: #8CC3A1; --flesh: #F09A4A; --flesh-soft: #3A2A1C; --rind-soft: #1F3328;
+  --bg: var(--blk); --ink: var(--lav);
   color-scheme: dark;
 }
 
@@ -93,7 +93,7 @@ p { margin: 0; }
 /* ---------- hero ---------- */
 .hero { padding-block: clamp(48px, 9vw, 96px) 40px; }
 .hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.02em; max-width: 15ch; }
-.hero h1 em { font-style: normal; color: var(--flesh); }
+.hero h1 em { font-style: normal; background: var(--ink); color: var(--bg); padding: 0 .15em; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .hero .lede { margin-top: 20px; font-size: var(--step-1); color: var(--muted); max-width: 46ch; }
 
 .hats { margin-top: 44px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -142,8 +142,8 @@ section.block { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var
 .browser { display: block; text-decoration: none; transition: transform .15s; }
 a.browser:hover { transform: translateY(-3px); }
 .p-meta h3 a { text-decoration: none; }
-.p-meta h3 a:hover { color: var(--flesh); }
-.status { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; background: var(--flesh-soft); color: var(--flesh); }
+.p-meta h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.status { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; background: var(--ink); color: var(--bg); }
 /* mini page mockups: each project gets its own client palette */
 .mock { aspect-ratio: 16 / 10; max-width: 100%; background: var(--c-bg); padding: 6% 7%; display: grid; grid-template-rows: auto 1fr; gap: 8%; }
 .mock .m-nav { display: flex; justify-content: space-between; align-items: center; }
@@ -161,6 +161,9 @@ a.browser:hover { transform: translateY(-3px); }
 .mock.v2 .m-img { display: none; }
 .mock.v2 .m-text { width: 70%; justify-items: center; }
 
+.project.wide { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.project.wide .info { display: grid; gap: 14px; min-width: 0; }
+@media (max-width: 760px) { .project.wide { grid-template-columns: 1fr; gap: 14px; } }
 .p-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .p-meta h3 { font-size: var(--step-2); font-weight: 600; }
 .p-meta .label { white-space: nowrap; }
@@ -168,7 +171,18 @@ a.browser:hover { transform: translateY(-3px); }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tags span { font-family: var(--mono); font-size: 0.75rem; padding: 3px 9px; border-radius: 999px; background: var(--rind-soft); color: var(--rind); }
 
-.services { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.price {
+  margin-top: 48px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px 40px; align-items: center;
+  padding: 28px; border: 1.5px solid var(--ink); border-radius: var(--radius);
+}
+@media (max-width: 760px) { .price { grid-template-columns: 1fr; } }
+.price .amount { font-family: var(--display); font-weight: 800; font-size: var(--step-4); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.price .amount small { font-family: var(--mono); font-size: var(--step--1); font-weight: 400; letter-spacing: .04em; color: var(--muted); margin-left: 6px; }
+.price ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 20px; }
+@media (max-width: 480px) { .price ul { grid-template-columns: 1fr; } }
+.price li::before { content: "✓"; margin-right: 8px; font-weight: 600; }
+.price .note { color: var(--muted); font-size: 0.9375rem; grid-column: 1 / -1; }
+.services { margin-top: 32px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
 @media (max-width: 760px) { .services { grid-template-columns: 1fr; } }
 .services div { padding: 20px 20px 4px 0; display: grid; gap: 6px; }
 .services h3 { font-size: var(--step-1); font-weight: 600; }
@@ -192,7 +206,7 @@ a.browser:hover { transform: translateY(-3px); }
 .lesson li::before {
   content: counter(step); width: 2.25rem; height: 2.25rem; border-radius: 50%;
   display: grid; place-items: center; font-family: var(--mono); font-size: 0.875rem;
-  background: var(--flesh-soft); color: var(--flesh); font-weight: 500;
+  background: var(--ink); color: var(--bg); font-weight: 500;
 }
 .lesson li b { display: block; font-weight: 600; }
 .lesson li p { color: var(--muted); font-size: 0.9375rem; }
@@ -212,22 +226,23 @@ a.browser:hover { transform: translateY(-3px); }
 }
 .btn:hover { border-color: var(--ink); }
 .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.btn.primary:hover { background: var(--rind); border-color: var(--rind); }
+.btn.primary:hover { background: var(--muted); border-color: var(--muted); }
 
 .sheet { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 860px) { .sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .frame {
   position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 8px; overflow: hidden;
-  background: var(--g); display: flex; flex-direction: column; justify-content: flex-end; padding: 12px;
-  color: #FFFFFF; text-decoration: none;
+  background: var(--ink); display: flex; flex-direction: column; justify-content: flex-end; padding: 12px;
+  color: var(--bg); text-decoration: none;
 }
-.frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 0 0 / .55), transparent 55%); }
+.frame::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--bg) 7%, transparent) 14px 15px); }
+.frame:hover { outline: 2px solid var(--ink); outline-offset: 3px; }
 .frame > * { position: relative; z-index: 1; }
 .frame strong { font-family: var(--display); font-size: var(--step-1); font-weight: 600; line-height: 1.15; }
 .frame small { font-family: var(--mono); font-size: 0.6875rem; opacity: .85; letter-spacing: .03em; }
 .frame .fmt {
   position: absolute; top: 10px; left: 10px; z-index: 1; font-family: var(--mono); font-size: 0.6875rem;
-  background: rgb(0 0 0 / .35); padding: 2px 7px; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--bg) 50%, transparent); padding: 2px 7px; border-radius: 999px;
 }
 
 /* ---------- contact / footer ---------- */
@@ -331,7 +346,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <article class="project">
           <a class="browser" href="https://pleasantonuppercervical.com" target="_blank" rel="noopener" aria-label="Visit Pleasanton Upper Cervical">
             <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">pleasantonuppercervical.com</span></div>
-            <div class="mock v2" style="--c-bg:#EEF3F0; --c-ink:#173F35; --c-pop:#7FA99A;">
+            <div class="mock v2" style="--c-bg: color-mix(in srgb, var(--ink) 6%, var(--bg)); --c-ink: var(--ink); --c-pop: color-mix(in srgb, var(--ink) 35%, var(--bg));">
               <div class="m-nav"><span class="m-logo"></span><span class="m-links"><i></i><i></i><i></i></span></div>
               <div class="m-body"><div class="m-text"><b></b><b></b><i></i><i></i><u></u></div><div class="m-img"></div></div>
             </div>
@@ -340,6 +355,30 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <p>An upper cervical chiropractic practice in Pleasanton. The new site is in final review.</p>
           <div class="tags"><span>Healthcare</span><span>New build</span></div>
         </article>
+        <article class="project wide">
+          <a class="browser" href="https://gordonjaychan1.github.io/KataDataAnalysis/" target="_blank" rel="noopener" aria-label="Visit 2024–25 WKF Kata Analysis">
+            <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">gordonjaychan1.github.io/KataDataAnalysis</span></div>
+            <img class="shot" src="images/katadataanalysis.jpg" alt="Homepage of 2024–25 WKF Kata Analysis" loading="lazy" width="1200" height="750">
+          </a>
+          <div class="info">
+            <p class="label">Side project · Data</p>
+            <div class="p-meta"><h3><a href="https://gordonjaychan1.github.io/KataDataAnalysis/" target="_blank" rel="noopener">2024–25 WKF Kata Analysis</a></h3></div>
+            <p>I compiled men's and women's kata results from the 2024–25 WKF season and built a site to explore them: sortable tables, per-athlete and per-kata breakdowns, medal tallies, and charts.</p>
+            <div class="tags"><span>Data analysis</span><span>Charts</span><span>Sortable tables</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="price">
+        <div><p class="label">Typical price</p><div class="amount">$95<small>/ month</small></div></div>
+        <ul>
+          <li>Design &amp; build</li>
+          <li>Hosting</li>
+          <li>Updates &amp; edits</li>
+          <li>Fixes &amp; support</li>
+        </ul>
+        <a class="btn primary" href="#contact">Start a website</a>
+        <p class="note">One monthly fee covers building your site, hosting it, and keeping it up to date. No big upfront bill.</p>
       </div>
 
       <div class="services">
@@ -357,7 +396,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <p class="label">Tutoring</p>
         <h2>One-on-one tutoring that meets students where they are</h2>
         <p>Patient, structured sessions built around what the student is actually stuck on, not a script.</p>
-        <p class="draft-note">Fill in your real subjects, levels, format, and rates.</p>
+        <p class="draft-note">Fill in your real subjects, levels, and format.</p>
       </div>
 
       <div class="tutor">
@@ -379,7 +418,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <div class="facts">
             <div><span class="label">Format</span><strong>Online or in person</strong></div>
             <div><span class="label">Session</span><strong>60 min</strong></div>
-            <div><span class="label">Rate</span><strong>Ask me</strong></div>
+            <div><span class="label">Rate</span><strong>$55 / hour</strong></div>
           </div>
           <div><a class="btn primary" href="#contact">Book an intro call</a></div>
         </div>
@@ -403,16 +442,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       </div>
 
       <div class="sheet">
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener" style="--g: linear-gradient(160deg, #E8A87C 0%, #C0392B 60%, #5D1F1A 100%);">
+        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
           <span class="fmt">Reel</span><small>35.01°N 135.77°E</small><strong>Kyoto</strong>
         </a>
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener" style="--g: linear-gradient(170deg, #F6D186 0%, #4A90A4 55%, #1D3B53 100%);">
+        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
           <span class="fmt">Post</span><small>38.72°N 9.14°W</small><strong>Lisbon</strong>
         </a>
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener" style="--g: linear-gradient(165deg, #A8E063 0%, #3E8E5E 50%, #163A2A 100%);">
+        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
           <span class="fmt">Reel</span><small>21.03°N 105.85°E</small><strong>Hanoi</strong>
         </a>
-        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener" style="--g: linear-gradient(160deg, #FFC371 0%, #E55D87 55%, #3B1F4A 100%);">
+        <a class="frame" href="https://www.instagram.com/gourdtravels/" target="_blank" rel="noopener">
           <span class="fmt">Guide</span><small>19.43°N 99.13°W</small><strong>Mexico City</strong>
         </a>
       </div>
