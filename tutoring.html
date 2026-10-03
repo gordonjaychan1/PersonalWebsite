@@ -37,7 +37,7 @@
       <a href="web">Web work</a>
       <a href="tutoring" aria-current="page">Tutoring</a>
       <a href="about">About</a>
-      <a href="#contact" class="hide-sm">Contact</a>
+      <a href="contact" class="hide-sm">Contact</a>
     </nav>
   </div>
 </header>
@@ -109,11 +109,15 @@
       <div class="book" id="book">
         <div class="book-text">
           <h2>Book a trial session</h2>
-          <p>Fill this out and press the button. Your email app opens with a request to me already written, and you just hit send. I'll reply within a day or two to set a time.</p>
-          <p>Prefer to write it yourself? Email <a href="mailto:gordonjaychan1@gmail.com">gordonjaychan1@gmail.com</a>.</p>
+          <p>Fill this out and I'll email you within a day or two to set up a time.</p>
+          <p>Prefer email? Write to <a href="mailto:gordonjaychan1@gmail.com">gordonjaychan1@gmail.com</a>.</p>
         </div>
-        <form class="book-form" id="book-form">
+        <form class="book-form js-formspree" id="book-form" action="https://formspree.io/f/mnpnelpr" method="POST" data-subject="Trial session request: {name}" data-done="Thanks! Your request is in. I'll email you within a day or two to find a time.">
+          <input type="hidden" name="_subject" value="Trial session request">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+          <input type="hidden" name="form" value="Tutoring trial">
           <label>Student's name<input id="bk-name" name="name" required autocomplete="off"></label>
+          <label>Your email<input id="bk-email" name="email" type="email" required autocomplete="email"></label>
           <label>Grade<select id="bk-grade" name="grade" required>
             <option value="">Choose…</option>
             <option>Elementary school</option><option>Middle school</option><option>High school</option>
@@ -122,14 +126,14 @@
             <option value="">Choose…</option>
             <option>Math</option><option>Science (Biology / Chemistry)</option><option>SAT prep</option><option>ACT prep</option>
           </select></label>
-          <label>Format<select id="bk-format" name="format" required>
+          <label class="wide">Format<select id="bk-format" name="format" required>
             <option value="">Choose…</option>
             <option>Online</option><option>In person (SF Bay Area)</option>
           </select></label>
           <label class="wide">Days and times that work<input id="bk-times" name="times" placeholder="e.g. Tue or Thu after 4pm"></label>
           <label class="wide">Anything I should know?<textarea id="bk-notes" name="notes" rows="3" placeholder="Upcoming test, topics that feel hard, goals"></textarea></label>
           <div class="wide book-actions">
-            <button class="btn primary" type="submit">Write the email</button>
+            <button class="btn primary" type="submit">Send request</button>
             <p class="book-status" id="bk-status" role="status"></p>
           </div>
         </form>
@@ -143,11 +147,11 @@
     <div class="contact-text">
       <p class="label">Contact</p>
       <h2>Need a website or a tutor? <small>(Or karate coaching, or kata data?)</small></h2>
-      <p>Send me a note with a little about what you're looking for.<br>I usually reply within a day or two.</p>
+      <p>Send me a message with a little about what you're looking for.<br>I usually reply within a day or two.</p>
     </div>
       <div class="email-row">
         <span class="email" id="email">gordonjaychan1@gmail.com</span>
-        <a class="btn primary" href="mailto:gordonjaychan1@gmail.com">Email me</a>
+        <a class="btn primary" href="contact">Send a message</a>
         <button class="btn" id="copy" type="button">Copy email</button>
       </div>
     </div>
